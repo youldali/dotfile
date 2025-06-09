@@ -19,7 +19,7 @@ services:
   postgres:
     image: postgres:14.9
     ports:
-      - 5432:5432
+      - 5499:5432
     networks:
       - database
     volumes:

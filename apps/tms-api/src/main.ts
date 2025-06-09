@@ -8,6 +8,8 @@ import { NestFactory } from '@nestjs/core';
 import { ApiModule } from './api.module';
 
 async function bootstrap() {
+  console.log(
+    '🚀 Starting TMS API...');
   const app = await NestFactory.create(ApiModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
