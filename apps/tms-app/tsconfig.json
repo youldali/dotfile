@@ -2,9 +2,14 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowJs": false,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "moduleResolution": "bundler",
+    "strict": true,
+    "paths": {
+      "@/*": ["./src/components/*"],
+      "@transactions/*": ["./src/modules/transactions/*"],
+    }
   },
   "files": [],
   "include": [],

@@ -10,7 +10,11 @@
       "node",
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts"
-    ]
+    ],
+    "paths": {
+      "@/*": ["./src/components/*"],
+      "@transactions/*": ["./src/modules/transactions/*"],
+    }
   },
   "include": [
     "jest.config.ts",
