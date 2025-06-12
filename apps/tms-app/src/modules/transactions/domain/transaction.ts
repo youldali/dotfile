@@ -8,3 +8,5 @@ export type Transaction = {
   currency: string;
   metadata?: Record<string, unknown>;
 };
+
+export type TransactionDraft = Partial<Omit<Transaction, 'id'>>;
