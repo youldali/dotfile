@@ -1,4 +1,5 @@
 import { Provider } from "../components/ui/provider";
+import { Toaster } from "../components/ui/toaster";
 import styled from 'styled-components';
 import { TransactionPage } from './pages/transactionPage';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -14,6 +15,7 @@ export function App() {
       <StyledApp>
         <TransactionPage />
       </StyledApp>
+      <Toaster />
     </Provider>
   );
 }

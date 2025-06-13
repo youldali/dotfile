@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { toaster } from "../../../../components/ui/toaster"
 import { type Errors, type TransactionDraft, validate } from '../../domain';
 import { createTransactionQuery } from '../../api/createTransaction';
 
-export const useForm = () => {
+type Props = {
+  onClose: () => void;
+}
+
+export const useForm = ({ onClose }: Props) => {
   const [validateOnChange, setValidateOnChange] = useState(false);
 
   const formikProps = useFormik<TransactionDraft>({
@@ -12,8 +17,18 @@ export const useForm = () => {
     onSubmit: async (values) => {
       try {
         await createTransactionQuery(values);
+        toaster.create({
+          title: 'Transaction created',
+          description: 'Your transaction has been created successfully.',
+          type: 'success',
+        });
+        onClose();
       } catch {
-        // handled by the query state
+        toaster.create({
+          title: 'An error occurred',
+          description: 'Failed to create transaction. Please try again later.',
+          type: 'error',
+        });
       }
     },
     validateOnChange,

@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker';
 import { type Transaction } from '../../domain/transaction';
-import { currencies, currencyCollection } from '../../../common/currencies';
+import { currencies } from '../../../common/currencies';
 import { useForm } from './useForm';
 interface TransactionFormProps {
   onSubmit: (transaction: Omit<Transaction, 'id'>) => void;
@@ -20,7 +20,7 @@ interface TransactionFormProps {
 }
 
 export const TransactionForm = ({ onSubmit, onClose }: TransactionFormProps) => {
-  const { formikProps: { values, errors, setFieldValue, handleSubmit } } = useForm();
+  const { formikProps: { values, errors, setFieldValue, handleSubmit } } = useForm({onClose});
   console.log(values, errors);
   return (
     <Box p={6}>

@@ -8,11 +8,13 @@ export class TransactionsController {
 
   @Post()
   create(@Body() createTransactionDto: CreateTransactionDto) {
+    console.log('Creating transaction:', createTransactionDto);
     return this.transactionsService.create(createTransactionDto);
   }
 
   @Get()
   findAll() {
+    console.log('fetching transactions:');
     return this.transactionsService.findAll();
   }
 

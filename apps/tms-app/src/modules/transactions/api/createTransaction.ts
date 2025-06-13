@@ -1,8 +1,9 @@
+import { baseApiUrl } from '../../../../config';
 import { type TransactionDraft } from '../domain/transaction';
 
 export async function createTransactionQuery(draft: TransactionDraft): Promise<void> {
   const response = await fetch(
-    `dotfile-tms.local/transactions`,
+    `${baseApiUrl}/transactions`,
     {
       method: 'POST',
       credentials: 'include',
@@ -10,6 +11,7 @@ export async function createTransactionQuery(draft: TransactionDraft): Promise<v
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(draft),
+      mode: 'cors',
     },
   );
 
