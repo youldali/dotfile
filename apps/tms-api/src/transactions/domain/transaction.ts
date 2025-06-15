@@ -1,4 +1,4 @@
-export type Transaction = {
+export interface Transaction {
   id: string;
   externalId: string;
   date?: Date;
@@ -6,7 +6,6 @@ export type Transaction = {
   targetAccount: string;
   amount: number;
   currency: string;
-  metadata?: Record<string, unknown>;
-};
+  metadata?: Record<string, any>;
+}
 
-export type TransactionDraft = Partial<Omit<Transaction, 'id'>>;

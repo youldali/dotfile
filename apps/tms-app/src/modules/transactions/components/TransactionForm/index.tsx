@@ -11,17 +11,15 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker';
-import { type Transaction } from '../../domain/transaction';
 import { currencies } from '../../../common/currencies';
 import { useForm } from './useForm';
 interface TransactionFormProps {
-  onSubmit: (transaction: Omit<Transaction, 'id'>) => void;
   onClose: () => void;
 }
 
-export const TransactionForm = ({ onSubmit, onClose }: TransactionFormProps) => {
+export const TransactionForm = ({ onClose }: TransactionFormProps) => {
   const { formikProps: { values, errors, setFieldValue, handleSubmit } } = useForm({onClose});
-  console.log(values, errors);
+  
   return (
     <Box p={6}>
       <form onSubmit={handleSubmit}>
@@ -29,31 +27,31 @@ export const TransactionForm = ({ onSubmit, onClose }: TransactionFormProps) => 
           <Field.Root required>
             <Field.Label>External ID</Field.Label>
             <Input
-              value={values.external_id}
-              onChange={(e) => setFieldValue('external_id', e.target.value)}
+              value={values.externalId}
+              onChange={(e) => setFieldValue('externalId', e.target.value)}
               placeholder="Enter external transaction ID"
             />
-            {errors.external_id && <Field.ErrorText>Field required</Field.ErrorText>}
+            {errors.externalId && <Field.ErrorText>Field required</Field.ErrorText>}
           </Field.Root>
 
           <Field.Root required>
             <Field.Label>Source Account</Field.Label>
             <Input
-              value={values.source_account_key}
-              onChange={(e) => setFieldValue('source_account_key', e.target.value)}
+              value={values.sourceAccount}
+              onChange={(e) => setFieldValue('sourceAccount', e.target.value)}
               placeholder="Enter source account key"
             />
-            {errors.source_account_key && <Field.ErrorText>Field required</Field.ErrorText>}
+            {errors.sourceAccount && <Field.ErrorText>Field required</Field.ErrorText>}
           </Field.Root>
 
           <Field.Root required>
             <Field.Label>Target Account</Field.Label>
             <Input
-              value={values.target_account_key}
-              onChange={(e) => setFieldValue('target_account_key', e.target.value)}
+              value={values.targetAccount}
+              onChange={(e) => setFieldValue('targetAccount', e.target.value)}
               placeholder="Enter target account key"
             />
-            {errors.target_account_key && <Field.ErrorText>Field required</Field.ErrorText>}
+            {errors.targetAccount && <Field.ErrorText>Field required</Field.ErrorText>}
           </Field.Root>
 
           <Field.Root required width={'100%'} invalid={Boolean(errors.date)}>

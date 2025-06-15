@@ -19,5 +19,5 @@ export class Transaction extends BaseEntity {
   currency: string;
 
   @Column('jsonb')
-  metadata: Record<string, string>;
+  metadata: Record<string, unknown>;
 }

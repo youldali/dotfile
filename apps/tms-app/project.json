@@ -32,7 +32,8 @@
     "serve": {
       "executor": "@nx/rspack:dev-server",
       "options": {
-        "buildTarget": "tms-app:build:development"
+        "buildTarget": "tms-app:build:development",
+        "host": "dotfile-tms.local"
       },
       "configurations": {
         "development": {},

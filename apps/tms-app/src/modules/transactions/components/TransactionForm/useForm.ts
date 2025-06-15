@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { toaster } from "../../../../components/ui/toaster"
 import { type Errors, type TransactionDraft, validate } from '../../domain';
-import { createTransactionQuery } from '../../api/createTransaction';
+import { useCreateTransactionQuery } from '../../api/createTransaction';
 
 type Props = {
   onClose: () => void;
@@ -11,12 +11,12 @@ type Props = {
 
 export const useForm = ({ onClose }: Props) => {
   const [validateOnChange, setValidateOnChange] = useState(false);
-
+  const createTransactionMutation = useCreateTransactionQuery();
   const formikProps = useFormik<TransactionDraft>({
     initialValues: {},
     onSubmit: async (values) => {
       try {
-        await createTransactionQuery(values);
+        await createTransactionMutation.mutateAsync(values);
         toaster.create({
           title: 'Transaction created',
           description: 'Your transaction has been created successfully.',

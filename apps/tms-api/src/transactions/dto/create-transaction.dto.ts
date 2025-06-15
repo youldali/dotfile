@@ -1,9 +1,22 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class CreateTransactionDto {
-  external_id: string;
+  @IsNotEmpty()
+  externalId: string;
+
   date: Date;
-  source_account_key: string;
-  target_account_key: string;
+
+  @IsNotEmpty()
+  sourceAccount: string;
+
+  @IsNotEmpty()
+  targetAccount: string;
+
+  @IsNotEmpty()
   amount: number;
+
+  @IsNotEmpty()
   currency: string;
-  metadata?: Record<string, any>;
+
+  metadata?: Record<string, unknown>;
 }

@@ -1,8 +1,10 @@
 import { baseApiUrl } from '../../../../config';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { type Transaction } from '../domain/transaction';
 
-export async function fetchTransactions(): Promise<Transaction[]> {
+const queryKey = ['transactions'];
+
+export async function fetchTransactionsQuery(): Promise<Transaction[]> {
   const response = await fetch(
     `${baseApiUrl}/transactions`,
     {
@@ -18,6 +20,14 @@ export async function fetchTransactions(): Promise<Transaction[]> {
   return response.json();
 }
 
-export const useFetchTransactions = () => {
-  return useQuery({ queryKey: ['transactions'], queryFn: fetchTransactions });
+export const useFetchTransactionsQuery = () => {
+  return useQuery({ queryKey, queryFn: fetchTransactionsQuery });
 };
+
+export const useInvalidateTransactionsQuery = () => {
+  const queryClient = useQueryClient();
+
+  return () => {
+    queryClient.invalidateQueries({ queryKey });
+  };
+}

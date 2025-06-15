@@ -7,9 +7,9 @@ export interface Errors {
     | 'required'
     | 'nonPositiveAmount';
   date?: 'required' | 'dateIntheFuture';
-  external_id?: 'required';
-  source_account_key?: 'required';
-  target_account_key?: 'required';
+  externalId?: 'required';
+  sourceAccount?: 'required';
+  targetAccount?: 'required';
   currency?: 'required';
 }
 
@@ -39,9 +39,9 @@ const textFieldSchema = yup
 
 const validationSchema = yup.object().shape({
   amount: amountFieldSchema,
-  date: yup.date().max(new Date(), 'dateIntheFuture').required('required'),
-  external_id: textFieldSchema,
-  source_account_key: textFieldSchema,
-  target_account_key: textFieldSchema,
+  date: yup.date().max(new Date(), 'dateIntheFuture').optional(),
+  externalId: textFieldSchema,
+  sourceAccount: textFieldSchema,
+  targetAccount: textFieldSchema,
   currency: yup.string().required('required'),
 });
